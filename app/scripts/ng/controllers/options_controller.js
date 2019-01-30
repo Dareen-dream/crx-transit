@@ -11,14 +11,14 @@ angular
 
     $scope.nextTranslator = function() {
       const translators = ['baidu', 'youdao', 'bing'];
-      
+
       let index = translators.indexOf($scope.options.translator) + 1;
       $scope.options.translator = translators[index % translators.length];
     };
 
     app.initOptions(function() {
       $scope.options = app.options;
-      app.log('Options Loaded:', app.options);
+      console.log('Options Loaded:', app.options);
 
       function saveOptions() {
         chrome.storage.sync.set($scope.options);

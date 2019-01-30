@@ -1,6 +1,6 @@
 /*
  * TransIt Popup
- * 
+ *
  * jshint strict: true
  */
 

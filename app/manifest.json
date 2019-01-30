@@ -1,36 +1,34 @@
 {
-  "manifest_version": 2,
-
-  "name": "TransIt",
-  "description": "让划词翻译更简单",
+  "name": "__MSG_appName__",
+  "short_name": "__MSG_appShortName__",
+  "description": "__MSG_appDescription__",
   "version": "1.6.6",
-
+  "manifest_version": 2,
+  "default_locale": "zh_CN",
   "icons": {
-    "48": "img/icon48.png",
-    "128": "img/icon128.png"
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
   },
-
   "background": {
-    "scripts": ["js/event.js"],
+    "scripts": [
+      "scripts/background.js"
+    ],
     "persistent": true
   },
-
-  "options_page": "options.html",
-
   "browser_action": {
-    "default_icon": "img/icon48.png",
-    "default_popup": "popup.html"
+    "default_icon": "images/icon48.png",
+    "default_title": "__MSG_browserActionTitle__",
+    "default_popup": "pages/popup.html"
   },
-
+  "options_page": "pages/options.html",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "css": ["css/contentstyle.css"],
-      "js": ["js/contentscript.js"],
+      "css": ["styles/contentstyle.css"],
+      "js": ["scripts/contentscript.js"],
       "all_frames": true
     }
   ],
-
   "permissions": [
     "tabs",
     "storage",
@@ -41,6 +39,5 @@
     "http://cn.bing.com/dict/search",
     "http://cn.bing.com/translator/api/Translate/TranslateArray"
   ],
-
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

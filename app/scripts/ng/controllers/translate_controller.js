@@ -22,7 +22,7 @@ angular
 
         var message = { type: 'translate', text: $scope.source };
         chrome.extension.sendMessage(message, function(response) {
-          app.log("Translate:", response);
+          console.log("Translate:", response);
           $scope.$apply(function() {
             $scope.output = renderTranslation($scope.source, response);
           });
@@ -50,7 +50,7 @@ angular
           document.execCommand('insertText', false, '\n');
         } else {
           $scope.translate($scope.source);
-          
+
           chrome.runtime.sendMessage({ type: 'selection', text: $scope.source });
         }
       }

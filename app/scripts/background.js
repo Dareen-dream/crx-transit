@@ -1,6 +1,6 @@
 /*
  * TransIt Event
- * 
+ *
  * jshint strict: true
  */
 
@@ -12,7 +12,7 @@ import app from './config/application';
 const CURRENT_TEXT_KEY = 'transit_current_text';
 
 // Setter / Getter for current text
-// 
+//
 // If text if passed, update `current_text` in local storage,
 // otherwise, read from local storage.
 function currentText(text) {
@@ -25,7 +25,7 @@ function currentText(text) {
 }
 
 // Translate text and send result back
-// 
+//
 // TODO: Cache translated result to speed up querying.
 function translateHanlder(message, sender, sendResponse) {
   const translator = translators[app.options.translator];
@@ -42,7 +42,7 @@ function currentTextHandler(message, sender, sendResponse) {
 }
 
 function linkInspectHandler(message, sender, sendResponse) {
-  app.log(message);
+  console.log(message)
   if (message.enabled) {
     chrome.browserAction.setIcon({ path: 'img/icon48-link.png' });
   } else {
@@ -50,7 +50,7 @@ function linkInspectHandler(message, sender, sendResponse) {
   }
 }
 
-app.registerMessageDispatcher({
+app.dispatch({
   translate: translateHanlder,
   selection: selectionHandler,
   currentText: currentTextHandler,

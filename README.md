@@ -10,7 +10,7 @@ http://gdgxian.org/crx-transit/
 
 ## 功能列表
 
-- 页面英文划词翻译 
+- 页面英文划词翻译
 - 连续对多个单词进行划词翻译
 - 对超链接中的文本进行划词翻译
 - 调整页面划词翻译结果显示的时间长短
@@ -25,44 +25,31 @@ http://gdgxian.org/crx-transit/
 - 问题和反馈 http://git.io/pz7M
 - 项目贡献者 https://git.io/v5LUv
 
-# 开发
+## Install
 
-## 安装依赖
+	$ npm install
 
-首先保证你的机器上装有`Node`, 同时`Node`的版本大于`6.0`
+## Development
 
-然后安装`bower`和`grunt`:
+    npm run dev chrome
+    npm run dev firefox
+    npm run dev opera
+    npm run dev edge
 
-```bash
-npm install -g bower grunt
-```
+## Build
 
-最后, 在项目根目录运行`bower install`和`npm install`安装所有的依赖.
+    npm run build chrome
+    npm run build firefox
+    npm run build opera
+    npm run build edge
 
-## 构建一个本地可运行的Chrome插件
+## Environment
 
-```bash
-grunt build
-```
+The build tool also defines a variable named `process.env.NODE_ENV` in your scripts.
 
-然后使用Chrome浏览器, 打开`Developer mode`, 然后`Load unpacked extension`, 选择项目根目录下的`build`目录即可.
+## Docs
 
-## 打包
-
-```bash
-grunt dist
-```
-
-dist目录下将会有一个`.zip`压缩包
-
-
-## 开发模式
-
-```bash
-grunt default
-```
-
-将会对项目进行编译, 然后检测文件的改变, 实时编译项目文件.
+* [webextension-toolbox](https://github.com/HaNdTriX/webextension-toolbox)
 
 ## 贡献者列表
 

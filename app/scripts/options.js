@@ -1,6 +1,6 @@
 /*
  * TransIt Options
- * 
+ *
  * jshint strict: true
  */
 
