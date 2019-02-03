@@ -2,10 +2,7 @@
  * TransIt ContentScript
  */
 
-import $ from 'jquery';
-import app from './config/application';
 import notify from './lib/notify';
-import { getSelection } from './lib/utils';
 
 let capslockEvents = [];
 
@@ -38,7 +35,7 @@ function canTranslate(text) {
 function selectionHandler(evt) {
   toggleLinkInspectMode(false);
 
-  const selection = getSelection(evt);
+  const selection = app.getSelection(evt)
 
   if (selection) {
     chrome.runtime.sendMessage({ type: 'selection', text: selection.text });

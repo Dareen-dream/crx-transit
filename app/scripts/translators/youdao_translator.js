@@ -1,59 +1,51 @@
-/**
- * 有道翻译
- */
-
-import sugar from 'sugar';
-import $ from 'jquery';
-import { sanitizeHTML } from '../lib/utils';
-
-export default class YoudaoTranslator {
-  constructor() {
-    this.name = 'youdao';
+class YoudaoTranslator {
+  constructor () {
+    this.name = 'youdao'
   }
 
-  _parseWord(page) {
-    var $result = $(sanitizeHTML(page)).find('#ec_contentWrp');
+  _parseWord (page) {
+    var $result = $(app.sanitizeHTML(page)).find('#ec_contentWrp')
 
     if ($result.length) {
-      var response = {};
+      var response = {}
 
-      var $phonetic = $result.find('.phonetic');
+      var $phonetic = $result.find('.phonetic')
       if ($phonetic.length) {
-        response.phonetic = $phonetic.last().text();
+        response.phonetic = $phonetic.last().text()
       }
-      
-      const $means = $result.find('ul li').toArray();
-      response.translation = $means.map(node => node.innerText).join('<br/>');
 
-      return response;
+      const $means = $result.find('ul li').toArray()
+      response.translation = $means.map(node => node.innerText).join('<br/>')
+
+      return response
     } else {
-      return null;
+      return null
     }
   }
 
-  _parseText(page) {
-    const $result = $(sanitizeHTML(page));
-    const $means = $result.find('#translateResult li').toArray();
-    const translation = $means.map(item => item.innerText).join('<br/><br/>');
+  _parseText (page) {
+    const $result = $(app.sanitizeHTML(page))
+    const $means = $result.find('#translateResult li').toArray()
+    const translation = $means.map(item => item.innerText).join('<br/><br/>')
 
-    return { translation: translation };
+    return { translation: translation }
   }
 
-  _requestWord(text, callback) {
+  _requestWord (text, callback) {
     const settings = {
       url: `http://mobile.youdao.com/dict?le=eng&q=${text}`,
       method: 'GET',
       headers: {
         'Accept-Language': 'zh-CN,zh;q=0.8'
       }
-    };
+    }
 
     $.ajax(settings)
       .done(page => callback(this._parseWord(page)))
-      .fail(() => callback(null));
+      .fail(() => callback(null))
   }
 
-  _requestText(text, callback) {
+  _requestText (text, callback) {
     const settings = {
       url: 'http://mobile.youdao.com/translate',
       type: 'POST',
@@ -66,20 +58,22 @@ export default class YoudaoTranslator {
         'Origin': 'http://mobile.youdao.com',
         'Refer': 'http://mobile.youdao.com/translate'
       }
-    };
+    }
 
     $.ajax(settings)
       .done(data => callback(this._parseText(data)))
-      .fail(() => callback(null));
+      .fail(() => callback(null))
   }
 
-  translate(text, callback) {
+  translate (text, callback) {
     if (/^\s*$/.test(text)) {
-      callback(null);
+      callback(null)
     } else if (/^[a-zA-Z]+$/.test(text)) {
-      this._requestWord(text, callback);
+      this._requestWord(text, callback)
     } else {
-      this._requestText(text, callback);
+      this._requestText(text, callback)
     }
   }
 }
+
+app.registerTranslator(new YoudaoTranslator())

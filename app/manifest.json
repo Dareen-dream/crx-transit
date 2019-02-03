@@ -11,6 +11,11 @@
   },
   "background": {
     "scripts": [
+      "scripts/libs/jquery.js",
+      "scripts/application.js",
+      "scripts/translators/baidu_translator.js",
+      "scripts/translators/bing_translator.js",
+      "scripts/translators/youdao_translator.js",
       "scripts/background.js"
     ],
     "persistent": true

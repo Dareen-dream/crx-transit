@@ -1,9 +1,6 @@
 /**
  * Bing Translator
  */
-import sugar from 'sugar';
-import $ from 'jquery';
-import { sanitizeHTML } from '../lib/utils';
 
 const DICT_URL = 'https://cn.bing.com/dict/search';
 const TRANSLATE_URL = 'https://cn.bing.com/translator/api/Translate/TranslateArray?from=-&to=zh-CHS';
@@ -29,7 +26,7 @@ export default class BingTranslator {
   }
 
   _parseWord(page) {
-    var $result = $(sanitizeHTML(page));
+    var $result = $(app.sanitizeHTML(page));
 
     if ($result.find('.qdef').length) {
       var response = {};
@@ -38,7 +35,7 @@ export default class BingTranslator {
       if ($phonetic.length) {
         response.phonetic = $phonetic.text().replace('美 ', '');
       }
-      
+
       var $means = $result.find('.hd_area + ul > li');
       response.translation =
         $means.map(this._parseMean).toArray().join('<br/>');
@@ -74,7 +71,7 @@ export default class BingTranslator {
   _buildLine(text, index) {
     console.log(text, index);
     const timestamp = new Date().getTime();
-    
+
     return {
       id: timestamp + index,
       text: text

@@ -1,7 +1,3 @@
-import sugar from 'sugar';
-import app from '../../config/application';
-import { renderTranslation } from '../../lib/utils';
-
 angular
   .module('TransitApp')
   .controller('TranslateCtrl', function($scope, $timeout) {
@@ -24,7 +20,7 @@ angular
         chrome.extension.sendMessage(message, function(response) {
           console.log("Translate:", response);
           $scope.$apply(function() {
-            $scope.output = renderTranslation($scope.source, response);
+            $scope.output = app.renderTranslation($scope.source, response);
           });
         });
       } else {
