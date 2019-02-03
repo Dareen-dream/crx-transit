@@ -2,87 +2,86 @@
  * Bing Translator
  */
 
-const DICT_URL = 'https://cn.bing.com/dict/search';
-const TRANSLATE_URL = 'https://cn.bing.com/translator/api/Translate/TranslateArray?from=-&to=zh-CHS';
-const REFERER = 'http://cn.bing.com/dict/?mkt=zh-cn&setlang=zh';
+const DICT_URL = 'https://cn.bing.com/dict/search'
+const TRANSLATE_URL = 'https://cn.bing.com/translator/api/Translate/TranslateArray?from=-&to=zh-CHS'
 
-export default class BingTranslator {
-  constructor() {
-    this.name = 'bing';
+class BingTranslator {
+  constructor () {
+    this.name = 'bing'
   }
 
-  _parseMean(index, meanNode) {
-    const $mean = $(meanNode);
-    const def = $mean.find('.def').text();
-    let   pos = $mean.find('.pos').text();
+  _parseMean (index, meanNode) {
+    const $mean = $(meanNode)
+    const def = $mean.find('.def').text()
+    let pos = $mean.find('.pos').text()
 
-    if (pos == '网络') {
-      pos = index > 0 ? '<br/><strong>网络：</strong><br/>' : '';
+    if (pos === '网络') {
+      pos = index > 0 ? '<br/><strong>网络：</strong><br/>' : ''
     } else {
-      pos = `${pos} `;
+      pos = `${pos} `
     }
 
-    return `${pos}${def}`;
+    return `${pos}${def}`
   }
 
-  _parseWord(page) {
-    var $result = $(app.sanitizeHTML(page));
+  _parseWord (page) {
+    var $result = $(app.sanitizeHTML(page))
 
     if ($result.find('.qdef').length) {
-      var response = {};
+      var response = {}
 
-      var $phonetic = $result.find('.hd_prUS');
+      var $phonetic = $result.find('.hd_prUS')
       if ($phonetic.length) {
-        response.phonetic = $phonetic.text().replace('美 ', '');
+        response.phonetic = $phonetic.text().replace('美 ', '')
       }
 
-      var $means = $result.find('.hd_area + ul > li');
+      var $means = $result.find('.hd_area + ul > li')
       response.translation =
-        $means.map(this._parseMean).toArray().join('<br/>');
+        $means.map(this._parseMean).toArray().join('<br/>')
 
-      return response;
+      return response
     } else if ($result.find('.p1-11').length) {
-      return { translation: $result.find('.p1-11').text() };
+      return { translation: $result.find('.p1-11').text() }
     } else {
-      return null;
+      return null
     }
   }
 
-  _parseText(data) {
-    const translation = data.items.map(item => item.text).join('<br/><br/>');
+  _parseText (data) {
+    const translation = data.items.map(item => item.text).join('<br/><br/>')
 
-    return { translation: translation };
+    return { translation: translation }
   }
 
-  _requestWord(text, callback) {
+  _requestWord (text, callback) {
     const settings = {
       url: DICT_URL,
       data: { q: text },
       headers: {
         'Accept-Language': 'zh-CN,zh;q=0.8'
       }
-    };
+    }
 
     $.ajax(settings)
       .done(page => callback(this._parseWord(page)))
-      .fail(() => callback(null));
+      .fail(() => callback(null))
   }
 
-  _buildLine(text, index) {
-    console.log(text, index);
-    const timestamp = new Date().getTime();
+  _buildLine (text, index) {
+    console.log(text, index)
+    const timestamp = new Date().getTime()
 
     return {
       id: timestamp + index,
       text: text
-    };
+    }
   }
 
-  _splitLines(text) {
-    return text.split(/\s*\n\s*/mg).map(this._buildLine);
+  _splitLines (text) {
+    return text.split(/\s*\n\s*/mg).map(this._buildLine)
   }
 
-  _requestText(text, callback) {
+  _requestText (text, callback) {
     const settings = {
       url: TRANSLATE_URL,
       type: 'POST',
@@ -92,20 +91,22 @@ export default class BingTranslator {
       headers: {
         'Accept-Language': 'zh-CN,zh;q=0.8'
       }
-    };
+    }
 
     $.ajax(settings)
       .done(data => callback(this._parseText(data)))
-      .fail(() => callback(null));
+      .fail(() => callback(null))
   }
 
-  translate(text, callback) {
+  translate (text, callback) {
     if (/^\s*$/.test(text)) {
-      callback(null);
+      callback(null)
     } else if (/^[a-zA-Z]+$/.test(text)) {
-      this._requestWord(text, callback);
+      this._requestWord(text, callback)
     } else {
-      this._requestText(text, callback);
+      this._requestText(text, callback)
     }
   }
 }
+
+app.registerTranslator(new BingTranslator())
