@@ -12,7 +12,7 @@ body {
 }
 
 .borad-header {
-  background: #fafafa url(../img/bg.png);
+  background: #fafafa url(../images/bg.png);
   background-size: 30%;
   border-bottom: 1px solid #eeeeee;
   padding: 10px 30px;
@@ -79,6 +79,4 @@ input[type=range] {
       }
     }
   }
-
-  
 }

@@ -1,6 +1,3 @@
-import app from '../../config/application'
-import angular from 'angular'
-
 angular
   .module('TransitApp')
   .controller('OptionsCtrl', function ($scope) {

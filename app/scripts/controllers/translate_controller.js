@@ -17,7 +17,7 @@ angular
 
         var message = { type: 'translate', text: $scope.source }
         chrome.extension.sendMessage(message, function (response) {
-          console.log("Translate:", response)
+          console.log('Translate:', response)
           $scope.$apply(function () {
             $scope.output = app.renderTranslation($scope.source, response)
           })

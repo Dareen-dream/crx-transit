@@ -10,7 +10,7 @@
 
     <div class="borad-header">
       <strong class="title">
-        <img src="img/icon48.png" alt="TransIt Logo" /> 偏好设定
+        <img src="../images/icon48.png" alt="TransIt Logo" /> 偏好设定
       </strong>
     </div>
 
@@ -21,25 +21,39 @@
         <div class="form-group">
           <label class="control-label">翻译服务</label>
           <div class="controls">
-            <label class="radio-inline"><input type="radio" name="translator" ng-model="options.translator" value="youdao" /> 有道翻译</label>
-            <label class="radio-inline"><input type="radio" name="translator" ng-model="options.translator" value="baidu" /> 百度翻译</label>
-            <label class="radio-inline"><input type="radio" name="translator" ng-model="options.translator" value="bing" /> 必应翻译</label>
+            <label class="radio-inline">
+              <input type="radio" name="translator" value="youdao" /> 有道翻译
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="translator" value="baidu" /> 百度翻译
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="translator" value="bing" /> 必应翻译
+            </label>
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label">启用页面划词</label>
           <div class="controls">
-            <label class="radio-inline"><input type="radio" name="pageInspect" ng-model="options.pageInspect" ng-value="true" />启用</label>
-            <label class="radio-inline"><input type="radio" name="pageInspect" ng-model="options.pageInspect" ng-value="false" /> 停用</label>
+            <label class="radio-inline">
+              <input type="radio" name="pageInspect" value="true" /> 启用
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="pageInspect" value="false" /> 停用
+            </label>
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label">启用链接划词</label>
           <div class="controls">
-            <label class="radio-inline"><input type="radio" name="linkInspect" ng-model="options.linkInspect" ng-value="true" />启用</label>
-            <label class="radio-inline"><input type="radio" name="linkInspect" ng-model="options.linkInspect" ng-value="false" /> 停用</label>
+            <label class="radio-inline">
+              <input type="radio" name="linkInspect" value="true" /> 启用
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="linkInspect" value="false" /> 停用
+            </label>
 
             <div class="hint">
               使用快捷键
@@ -54,21 +68,20 @@
           <label class="control-label">划词翻译结果显示位置</label>
           <div class="controls">
             <label class="radio-inline">
-              <input type="radio" name="notifyMode" ng-model="options.notifyMode" value="margin" /> 在窗口边缘显示
+              <input type="radio" name="notifyMode" value="margin" /> 在窗口边缘显示
             </label>
             <label class="radio-inline">
-              <input type="radio" name="notifyMode" ng-model="options.notifyMode" value="in-place" /> 在选择的文本附近显示
+              <input type="radio" name="notifyMode" value="in-place" /> 在选择的文本附近显示
             </label>
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group notify-timeout">
           <label class="control-label">划词翻译结果显示时长</label>
           <div class="controls" style="padding-top: 7px;">
-            <input type="range" min="3" max="10" step="1" ng-model="options.notifyTimeout" data-highlight="true" />
-            <span class="label label-info">{{ options.notifyTimeout }} 秒</span>
+            <input type="range" min="3" max="10" step="1" />
+            <span class="label label-info"></span>
           </div>
-
         </div>
 
       </form>
@@ -77,6 +90,8 @@
 
   </div><!-- .board -->
 
+  <script src="../scripts/libs/jquery.js"></script>
+  <script src="../scripts/application.js"></script>
   <script src="../scripts/options.js"></script>
 </body>
 </html>
