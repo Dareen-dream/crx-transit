@@ -48,19 +48,19 @@ body {
   background-size: 16px 16px;
   background-repeat: no-repeat;
   background-position: center center;
+}
 
-  &.youdao {
-    background-size: 29px 16px;
-    background-image: url(../images/translators/youdao.png);
-  }
+[data-translator="youdao"] {
+  background-size: 29px 16px;
+  background-image: url(../images/translators/youdao.png);
+}
 
-  &.baidu {
-    background-image: url(../img/translators/baidu.png);
-  }
+[data-translator="baidu"] {
+  background-image: url(../images/translators/baidu.png);
+}
 
-  &.bing {
-    background-image: url(../img/translators/bing.png);
-  }
+[data-translator="bing"] {
+  background-image: url(../images/translators/bing.png);
 }
 
 .transit-result {
