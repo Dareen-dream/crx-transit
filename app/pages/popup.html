@@ -29,16 +29,18 @@
        ng-click="nextTranslator()"></a>
 
     <label class="checkbox-inline" title="页面划词">
-      <input type="checkbox" ng-model="options.pageInspect" />
+      <input type="checkbox" name="pageInspect" />
       <span class="icon icon-text"></span>
     </label>
 
     <label class="checkbox-inline" title="链接划词（Ctrl+Shift+L）">
-      <input type="checkbox" ng-model="options.linkInspect" />
+      <input type="checkbox" name="linkInspect" />
       <span class="icon icon-link"></span>
     </label>
   </footer>
 
+  <script src="../scripts/libs/jquery.js"></script>
+  <script src="../scripts/application.js"></script>
   <script src="../scripts/popup.js"></script>
 </body>
 </html>

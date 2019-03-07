@@ -1,14 +1,14 @@
-/*
- * TransIt Popup
- *
- * jshint strict: true
- */
+function updateCheckboxValue (event) {
+  const $checkbox = $(event.target)
+  const name = $checkbox.attr('name')
+  const value = $checkbox.prop('checked')
+  app.setOptions({ [name]: value })
+}
 
-var angular = require('angular')
-require('angular-elastic')
+function init (options) {
+  $('[name="pageInspect"]').prop('checked', options.pageInspect)
+  $('[name="linkInspect"]').prop('checked', options.linkInspect)
+  $(document).on('change', ':checkbox', updateCheckboxValue)
+}
 
-angular.module('TransitApp', ['monospaced.elastic'])
-
-require('./ng/filters/html_safe_filter')
-require('./ng/controllers/translate_controller')
-require('./ng/controllers/options_controller')
+app.getOptions().then(init)

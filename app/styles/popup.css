@@ -1,5 +1,4 @@
 @import 'includes/transit_result';
-@import 'includes/sprite';
 
 body {
   width: 200px;
@@ -52,7 +51,7 @@ body {
 
   &.youdao {
     background-size: 29px 16px;
-    background-image: url(../img/translators/youdao.png);
+    background-image: url(../images/translators/youdao.png);
   }
 
   &.baidu {
@@ -94,16 +93,41 @@ footer {
 .checkbox-inline {
   display: inline-block;
   cursor: pointer;
+}
 
-  input {
-    display: none;
-  }
+.checkbox-inline input {
+  display: none;
+}
 
-  input:not(:checked) + .icon {
-    opacity: 0.3;
-  }
+.checkbox-inline input:not(:checked) + .icon {
+  opacity: 0.3;
 }
 
 .translator-logo {
-  height: 16px; 
+  height: 16px;
+}
+
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url(../images/sprite.svg);
+  opacity: 0.6;
+}
+
+.icon-cog {
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+}
+
+.icon-text {
+  width: 15px;
+  height: 16px;
+  background-position: -32px 0;
+}
+
+.icon-link {
+  width: 15px;
+  height: 16px;
+  background-position: -64px 0;
 }
