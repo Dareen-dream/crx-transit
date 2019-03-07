@@ -16,12 +16,18 @@ function setNextTranslator () {
   app.setOptions({ translator: nextTranslator })
 }
 
+function openOptionsPage () {
+  app.openExtensionPage('pages/options.html')
+  window.close()
+}
+
 function init (options) {
   $('.btn-translator').attr('data-translator', options.translator)
   $('[name="pageInspect"]').prop('checked', options.pageInspect)
   $('[name="linkInspect"]').prop('checked', options.linkInspect)
   $(document).on('change', ':checkbox', updateCheckboxValue)
   $('.btn-translator').on('click', setNextTranslator)
+  $('.btn-options').on('click', openOptionsPage)
 }
 
 app.getOptions().then(init)

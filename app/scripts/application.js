@@ -34,16 +34,16 @@ const app = {
   },
 
   openExtensionPage (filename) {
-    var optionsUrl = chrome.extension.getURL(filename)
+    var url = chrome.extension.getURL(filename)
 
     chrome.tabs.query({}, tabs => {
-      var optionTab = tabs.find({ url: optionsUrl })
+      var tab = tabs.find(tab => tab.url.indexOf(url) !== -1)
 
-      if (optionTab) {
-        chrome.tabs.reload(optionTab.id)
-        chrome.tabs.update(optionTab.id, { highlighted: true })
+      if (tab) {
+        chrome.tabs.reload(tab.id)
+        chrome.tabs.update(tab.id, { active: true })
       } else {
-        chrome.tabs.create({ url: optionsUrl })
+        chrome.tabs.create({ url })
       }
     })
   },
