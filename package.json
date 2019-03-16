@@ -12,7 +12,8 @@
       "chrome",
       "angular",
       "app",
-      "$"
+      "$",
+      "_"
     ]
   },
   "dependencies": {

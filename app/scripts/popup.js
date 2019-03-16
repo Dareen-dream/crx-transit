@@ -21,7 +21,17 @@ function openOptionsPage () {
   window.close()
 }
 
+function getCurrentText () {
+  const text = window.localStorage['transit_current_text']
+  return text || ''
+}
+
+function doTranslate () {
+  console.log('Not Implemented')
+}
+
 function init (options) {
+  $('#source').val(getCurrentText())
   $('.btn-translator').attr('data-translator', options.translator)
   $('[name="pageInspect"]').prop('checked', options.pageInspect)
   $('[name="linkInspect"]').prop('checked', options.linkInspect)
