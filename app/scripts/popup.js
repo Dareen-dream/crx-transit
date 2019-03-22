@@ -27,7 +27,13 @@ function getCurrentText () {
 }
 
 function doTranslate () {
-  console.log('Not Implemented')
+  console.log('Not Implemented' + Date.now())
+}
+
+let timer = null
+function onSourceChanged () {
+  clearTimeout(timer)
+  timer = window.setTimeout(doTranslate, 500)
 }
 
 function init (options) {
@@ -38,6 +44,8 @@ function init (options) {
   $(document).on('change', ':checkbox', updateCheckboxValue)
   $('.btn-translator').on('click', setNextTranslator)
   $('.btn-options').on('click', openOptionsPage)
+
+  $('#source').on('input', onSourceChanged)
 }
 
 app.getOptions().then(init)

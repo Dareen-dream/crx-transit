@@ -7,12 +7,7 @@
 </head>
 <body>
   <div class="translator" ng-controller="TranslateCtrl">
-    <textarea id="source" placeholder="输入文字进行翻译 ..."
-              ng-model="source"
-              ng-trim="false"
-              ng-keydown="handleKeydown($event)"
-              ng-keyup="handleChange($event)"
-              msd-elastic></textarea>
+    <textarea id="source" placeholder="输入文字进行翻译 ..."></textarea>
 
     <div id="result" ng-bind-html="output | html_safe"></div>
   </div>
